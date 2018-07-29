@@ -14,6 +14,7 @@ class Router
         $this->frontendController = new FrontendController();
     }
 
+
     public function run()
     {
         $klein = new \Klein\Klein();
@@ -33,6 +34,10 @@ class Router
         $klein->respond('GET', '/drinks', function () {
             $this->frontendController->drinks();
         });
+        
+        $klein->respond('GET', '/salades', function () {
+            $this->frontendController->salades();
+        });
 
         $klein->respond('GET', '/desserts', function () {
             $this->frontendController->desserts();
@@ -42,6 +47,11 @@ class Router
             $this->frontendController->avis();
         });
 
+        $klein->respond('POST', '/comments', function () {
+           $this->frontendController->addComment($_POST['author'],$_POST['comment']);
+        });
+        
+        
         $klein->respond('GET', '/public/[*]', function ($request, $response) {
             $file = __DIR__ . '/..' . $request->pathname();
             $types = [
@@ -55,12 +65,11 @@ class Router
             return file_get_contents($file);
         });
 
+   
         $klein->dispatch();
     }
-public function addComment()
-{
-    $this->$frontendController->addComment($_GET['articleId'], $_POST);
-}
-    
+ 
+
+   
     
 }

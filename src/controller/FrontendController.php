@@ -3,11 +3,12 @@
 namespace App\Controller;
 
 use App\Dao\CommentDao;
+use App\Dao\RecetteDao;
 
 class FrontendController
 {
     private $commentDao;
-
+    private $recetteDao;
 
     public function __construct()
     {
@@ -16,6 +17,8 @@ class FrontendController
 
     public function home()
     {
+        $comments = $this->commentDao->getGlobalComments();
+       
         require(__DIR__ . '/../view/base.php');
     }
 
@@ -34,14 +37,15 @@ class FrontendController
     {
         $recettes = [];
         if ($type === 'boeuf') {
-            require(__DIR__.'/../view/burgers_boeuf.php');
+         require(__DIR__.'/../view/burgers_boeuf.php');
         }
         if ($type === 'poulet') {
-            require(__DIR__.'/../view/burgers_poulet.php');
+     require(__DIR__.'/../view/burgers_poulet.php');
         }
+         $recettes = $this->recetteDao->getGlobalRecette();
     }
     
-    public function salade()
+    public function salades()
     {
         require(__DIR__.'/../view/salades.php');
     }
@@ -61,9 +65,9 @@ class FrontendController
         require(__DIR__.'/../view/avis.php');
     }
 
-    public function addComment($Id, $formData)
+    public function addComment($author,$comment)
     {
-        $this->commentDao->create($articleId, $formData);
-       header('Location: ?action=base' . $articleId);
+        $this->commentDao->create($author, $comment);
+    
     }
 }

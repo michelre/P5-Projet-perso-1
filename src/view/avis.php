@@ -64,7 +64,7 @@
 
 
 <div class="text-center">
-  <form action="?action=addComment" method="post">
+  <form action="/comments" method="post">
     Pseudo : <br/>
     <input type="text" name="author"/><br/>
 

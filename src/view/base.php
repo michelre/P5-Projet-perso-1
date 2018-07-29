@@ -50,12 +50,16 @@
 		<h3 class="text-center border border-info rounded bg-info text-white container">Vos avis </h3>
 	</div>
 
-
-
-<div class="mt-3 mb-3 p-2 border-bottom">
-        <h4><?php //echo $comment->getAuthor(); ?></h4>
-        <p><?php //echo $comment->getComment(); ?></p>
+<div class="mt-3 mb-3 p-2 border text-center">
+    <?php foreach($comments as $comment){ ?>
+    
+        <h4><?php echo $comment->getAuthor(); ?></h4>
+        <p><?php echo $comment->getComment(); ?></p>
+    
+    <?php } ?>
 </div>
+
+
 
 	<footer>
 	<?php include("template/footer.php") ?>

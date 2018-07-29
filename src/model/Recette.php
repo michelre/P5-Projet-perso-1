@@ -6,6 +6,7 @@ class Recette
 {
 
     private $id;
+    private $name;
     private $content;
     private $type_id;
 
@@ -24,7 +25,19 @@ class Recette
     {
         $this->id = $id;
     }
+    
+    public function getname()
+    {
+        return $this->name;
+    }
 
+    /**
+     * @param mixed $id
+     */
+    public function setname()
+    {
+        $this->id = $name;
+    }
     /**
      * @return mixed
      */

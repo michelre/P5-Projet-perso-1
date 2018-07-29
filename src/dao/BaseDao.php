@@ -11,7 +11,7 @@ class BaseDao
 
     public function __construct()
     {
-		$this->db =new PDO('mysql:localhost;dbname=uvdprojet5;charset=utf8', 'root', '');
+		$this->db =new PDO('mysql:host=localhost;dbname=projet 5;charset=utf8', 'root', '');
     }
 
 

@@ -1,35 +1,32 @@
 <?php
 
 namespace App\Dao;
-
-
+use PDO;
+use App\Model\Comment;
+    
 class CommentDao extends BaseDao
 {
 
-    public function getGlobalComment()
+    public function getGlobalComments()
     {
-        return $this->db
-            ->query('SELECT * FROM comment WHERE id = ' . $commentId)
-            ->fetchObject(Comment::class);
-        $result = $this->db->query("SELECT * FROM comment");
-		
-        $comments = array();
-        while ($comment = $result->fetchObject(Comment::class)) {
-            array_push($comments, $comment);
-    }
+        $result = $this->db->query("SELECT * FROM comment where recette_id is null");
+       $comments = array();
+      while ($comment = $result->fetchObject(Comment::class)) { 
+         array_push($comments, $comment);
+      } 
+       return $comments;
     }
 
-    public function getCommentByrecette($recetteId)
+    public function create($author , $comment ,$recetteId = null)
     {
-         return $this->db
-            ->query('SELECT * FROM comment WHERE id = ' . $recetteId)
-            ->fetchObject(Comment::class);
+      
+   $this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION ); 
+        try { 
+            return $this->db ->prepare('INSERT INTO comment(author, comment, date_creation, recette_id) VALUES(?, ?, NOW(), ?)') ->execute([$author, $comment, $recetteId]);
+            }  catch (PDOEXception $exception)
+        { echo $exception->getMessage(); 
     }
-
-    public function create($commentId,$formData)
-    {
-        $stmt = $this->db->prepare('INSERT INTO comment(author, comment, date) VALUES(?, ?, NOW())');
-        $stmt->bindParam('sss', $formData['author'], $formData['comment']);
-        $stmt->execute();
+        
+        
     }
 }

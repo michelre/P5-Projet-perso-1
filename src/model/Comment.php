@@ -9,6 +9,7 @@ class Comment
     private $author;
     private $comment;
     private $date_creation;
+    private $recette_id;
 
     /**
      * @return mixed
@@ -73,6 +74,17 @@ class Comment
 	public function setDateCreation($date)
     {
         $this->date = $date;
+    }
+      
+    public function getrecetteId()
+    {
+        return $this-> recetteId;
+    }
+
+
+	public function setrecetteId($recetteId)
+    {
+        $this->date = $recetteId;
     }
 
 }

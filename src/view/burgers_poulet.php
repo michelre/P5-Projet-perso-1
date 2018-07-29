@@ -26,9 +26,9 @@
     <tbody>
     <?php foreach ($recettes as $recette) { ?>
     <tr>
-      <th scope="row"><?php echo $recette->getId(); ?></th>
+      <th scope="row"><?php echo $recette->getname(); ?></th>
       <td>
-          <?php echo $recette->getId(); ?><?php echo $recette->getrecette() ?>
+          <?php echo $recette->getcontent() ?>
       </td>
       </tr>
     </tbody>
@@ -38,6 +38,4 @@
 	<footer class="mt-5">
     </footer>
     </body>
-
-
 </html>
