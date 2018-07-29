@@ -1,0 +1,11 @@
+{
+  "name": "remimichel/p5-projet-perso",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src"
+    }
+  },
+  "require": {
+    "klein/klein": "^2.1"
+  }
+}
