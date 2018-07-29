@@ -22,8 +22,8 @@
           Burgers
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/burgers/boeuf">Boeuf</a>
-          <a class="dropdown-item" href="/burgers/poulet">Poulet</a>
+          <a class="dropdown-item" href="/burgers/1">Boeuf</a>
+          <a class="dropdown-item" href="/burgers/2">Poulet</a>
         </div>
       </li>
     <li class="nav-item">

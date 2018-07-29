@@ -1,33 +1,35 @@
 <?php
 
 namespace App\Dao;
+
+use App\Model\Recette;
 use PDO;
-use App\Model\RecetteDao;
 
 class RecetteDao extends BaseDao
 {
 
-    public function getGlobalRecette()
+    public function getRecettes($typeId)
     {
-        $result = $this->db->query("SELECT * FROM recette where type_id");
-       $recettes = array();
-      while ($recette = $result->fetchObject(Recette::class)) { 
-         array_push($recettes, $recette);
-      } 
-       return $recette;
+        $stmt = $this->db->prepare("SELECT * FROM recette WHERE type_id = ?");
+        $stmt->execute([$typeId]);
+        $recettes = array();
+        while ($recette = $stmt->fetchObject(Recette::class)) {
+            array_push($recettes, $recette);
+        }
+        return $recettes;
     }
 
-    public function create($name , $content)
+    public function create($name, $content)
     {
-      
-   $this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION ); 
-        try { 
-            return $this->db ->prepare('INSERT INTO recette(name, content) VALUES(?, ?)') 
+
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+            return $this->db->prepare('INSERT INTO recette(name, content) VALUES(?, ?)')
                 ->execute([$name, $content]);
-            }  catch (PDOEXception $exception)
-        { echo $exception->getMessage(); 
-    }
-        
-        
+        } catch (PDOEXception $exception) {
+            echo $exception->getMessage();
+        }
+
+
     }
 }
